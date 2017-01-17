@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cod_habitacion: MyString
+  type: 
+  precio: MyString
+  piso: 1
+
+two:
+  cod_habitacion: MyString
+  type: 
+  precio: MyString
+  piso: 1

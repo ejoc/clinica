@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  altura: 1
+  peso: 1
+  tipo_sangre: one
+
+two:
+  user: two
+  altura: 1
+  peso: 1
+  tipo_sangre: two
