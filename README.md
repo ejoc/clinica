@@ -1,2 +1,0 @@
-# clinica
-Clinica
