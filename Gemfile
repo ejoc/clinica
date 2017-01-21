@@ -49,9 +49,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 
 gem 'devise', '~> 4.2'
-gem 'inherited_resources', github: 'activeadmin/inherited_resources'
-gem 'activeadmin', '~> 1.0.0.pre4'
+gem 'rails_admin', '~> 1.1', '>= 1.1.1'
 
-gem 'jquery-ui-rails', '~> 4.2.1'
+# gem 'jquery-ui-rails', '~> 4.2.1'
 
 gem "cancancan"
+gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'

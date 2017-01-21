@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  factura: one
+  servicio: one
+  cantidad: 1
+  valor_unitario: 1.5
+  valor_total: 1.5
+
+two:
+  factura: two
+  servicio: two
+  cantidad: 1
+  valor_unitario: 1.5
+  valor_total: 1.5
