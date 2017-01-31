@@ -1,0 +1,9 @@
+<tr class="nested-fields_<%=f.object.id %>">
+  <td><%= f.collection_select :servicio_id, Servicio.all, :id, :nombre, {:include_blank => "Por favor seleccione"}, :class => "form-control", :onchange => "getPrecio(this.value)"  %></td>
+  <td><%= f.text_field :cantidad, value: '1', class: 'form-control' %></td>
+  <td>Precio u</td>
+  <td>Total</td>
+  <td>
+    <%= link_to_remove_association "remove item", f %>
+  </tr>
+</td>

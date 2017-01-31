@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170121180420) do
+ActiveRecord::Schema.define(version: 20170125052715) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 20170121180420) do
     t.string   "telefono"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.index ["cedula"], name: "index_pacientes_on_cedula", unique: true
   end
 
   create_table "profiles", force: :cascade do |t|

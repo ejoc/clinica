@@ -1,0 +1,8 @@
+<tr id="factura_detalle">
+  <td><%= f.text_field :id %></td>
+  <td><%= f.text_field :servicio_id %></td>
+  <td><%= f.text_field :cantidad %></td>
+  <td>
+    <%= link_to_remove_association "remove item", f %>
+  </td>
+</tr>

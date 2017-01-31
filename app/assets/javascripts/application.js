@@ -13,5 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
+//= require bootstrap-editable.min
+//= require cocoon
 //= require turbolinks
 //= require_tree .

@@ -4,8 +4,18 @@ class Factura < ApplicationRecord
   belongs_to :user
   belongs_to :metodo_pago
 
-  has_many :factura_detalles
+  has_many :detalles, class_name: 'FacturaDetalle', foreign_key: 'factura_id', dependent: :delete_all
   has_many :servicios, through: :factura_detalles
+
+  accepts_nested_attributes_for :servicios, reject_if: :all_blank, allow_destroy: true
+
+  accepts_nested_attributes_for :detalles, reject_if: :all_blank, allow_destroy: true
+
+  after_create do
+    self.subtotal = self.detalles.sum(:valor_total)
+    self.iva = 0.14
+    self.total = self.subtotal * (1 * self.iva)
+  end
 
   rails_admin do
 
@@ -14,7 +24,7 @@ class Factura < ApplicationRecord
 	   #    help false
 	   #  end
 
-  		group :paciente do 
+  		group :paciente do
 	  		field :paciente do
 	  			inline_edit false
 	  		end

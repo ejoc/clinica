@@ -1,0 +1,66 @@
+<div class="row">
+ <%= form_tag(servicios_path, :method => "get", id: "search-form", class: 'form', remote: true) do %>
+  <div class="form-group input-group">
+    <%= text_field_tag :search, params[:search], placeholder: "Search servicio", class: 'form-control' %>
+    <span class="input-group-btn">
+
+      <%= button_tag(class: "btn btn-default", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Search"}) do %>
+          <i class="fa fa-search"></i>
+      <% end %>
+    </span>
+  </div>
+  <% end %>
+  <table class="table" id="servicios-table">
+    <thead>
+      <tr>
+        <th>Codigo</th>
+        <th>Nombre</th>
+        <th>Precio unitario</th>
+      </tr>
+    </thead>
+
+    <tbody id="servicios">
+      <% @servicios.each do |servicio| %>
+        <tr id="servicio_<%= servicio.id %>">
+          <td><%= servicio.id %></td>
+          <td ><%= servicio.nombre %></td>
+          <td><%= servicio.precio %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= paginate @servicios, :theme => 'twitter-bootstrap-3', :remote => true %>
+
+  <button id="chose" class="btn btn-default">Escoger</button>
+
+</div>
+
+<%= javascript_tag defer: 'defer' do -%>
+  $(document).ready(function() {
+    $("#servicios-table tbody tr").click(function() {
+      $(this).addClass('success').siblings().removeClass('success');
+      var value = $(this).find('td:first').html();
+    });
+
+    $("#servicios-table tbody tr").dblclick(function() {
+      var servicio = $(this).find('td:first').html();
+      $('.modal').modal('toggle');
+
+
+      var servicio_id = $(this).find('td:first').html();
+      var markup = "<tr><td><input type='checkbox' name='record'></td><td>" + servicio_id + "</td><td>" + servicio_id + "</td></tr>";
+      $("#factura_detalle").append(markup);
+    });
+
+    $('#chose').on('click', function(e){
+      var servicio = $("#servicios-table tbody tr.success td:first").html();
+      $('.modal').modal('toggle');
+      $("#factura_servicio_id").val(servicio);
+    });
+
+    $('#servicios-table tbody tr').hover(function() {
+        $(this).css('cursor','pointer');
+    });
+  });
+<% end -%>

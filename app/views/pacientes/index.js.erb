@@ -1,0 +1,12 @@
+$('#dialog h3').html("<i class='glyphicon glyphicon-plus'></i> Seleccione el paciente");
+
+// Render the new form
+$('.modal-body').html("<%= j render('choose_paciente') %>");
+
+// Show the dynamic dialog
+$('#dialog').modal("show");
+
+// Set focus to the first element
+$('#dialog').on('shown.bs.modal', function () {
+	$('.first_input').focus()
+})

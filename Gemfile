@@ -55,3 +55,10 @@ gem 'rails_admin', '~> 1.1', '>= 1.1.1'
 
 gem "cancancan"
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
+
+gem 'kaminari', '~> 0.17.0'
+gem 'bootstrap-kaminari-views'
+
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.1'
+
+gem 'cocoon', '~> 1.2', '>= 1.2.9'

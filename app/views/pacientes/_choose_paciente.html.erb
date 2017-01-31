@@ -1,0 +1,63 @@
+<div class="row">
+ <%= form_tag(pacientes_path, :method => "get", id: "search-form", class: 'form', remote: true) do %>
+  <div class="form-group input-group">
+    <%= text_field_tag :search, params[:search], placeholder: "Search paciente", class: 'form-control' %>
+    <span class="input-group-btn">
+
+      <%= button_tag(class: "btn btn-default", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Search"}) do %>
+          <i class="fa fa-search"></i>
+      <% end %>
+    </span>
+  </div>
+  <% end %>
+  <table class="table" id="pacientes-table">
+    <thead>
+      <tr>
+        <th>Cedula</th>
+        <th>Nombre</th>
+        <th>Direccion</th>
+      </tr>
+    </thead>
+
+    <tbody id="pacientes">
+      <% @pacientes.each do |paciente| %>
+        <tr id="paciente_<%= paciente.id %>">
+          <td style="display:none;"><%= paciente.id %></td>
+          <td ><%= paciente.cedula %></td>
+          <td><%= paciente.nombres %></td>
+          <td><%= paciente.direccion %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= paginate @pacientes, :theme => 'twitter-bootstrap-3', :remote => true %>
+
+  <button id="chose" class="btn btn-default">Escoger</button>
+
+</div>
+
+<%= javascript_tag defer: 'defer' do -%>
+  $(document).ready(function() {
+    $("#pacientes-table tbody tr").click(function() {
+      $(this).addClass('success').siblings().removeClass('success');
+      var value = $(this).find('td:first').html();
+    });
+
+    $("#pacientes-table tbody tr").dblclick(function() {
+      var paciente = $(this).find('td:first').html();
+      $('.modal').modal('toggle');
+      $("#factura_paciente_id").val(paciente);
+    });
+
+    $('#chose').on('click', function(e){
+      var paciente = $("#pacientes-table tbody tr.success td:first").html();
+      $('.modal').modal('toggle');
+      $("#factura_paciente_id").val(paciente);
+    });
+
+    $('#pacientes-table tbody tr').hover(function() {
+        $(this).css('cursor','pointer');
+    });
+  });
+<% end -%>

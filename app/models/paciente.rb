@@ -18,6 +18,10 @@ class Paciente < ApplicationRecord
 		cedula
 	end
 
+  def self.search param
+		where(cedula: param) if (Float(param)) rescue where("nombres LIKE lower(?)",param)
+	end
+
 	protected
 
 	def validate_cedula
@@ -25,14 +29,14 @@ class Paciente < ApplicationRecord
 		posicion = 1
 		n_last = self.cedula.last.to_i
 		self.cedula[0..8].each_char do |n|
-			current_n = n.to_i 
+			current_n = n.to_i
 			if posicion % 2 == 0
 				valor += current_n
 			else
 				if ((producto = current_n * 2)  >= 10)
 					valor += producto.to_s.chars.map(&:to_i).sum
 				else
-					valor += current_n * 2 
+					valor += current_n * 2
 				end
 			end
 			posicion += 1
